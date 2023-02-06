@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".filme_actv.FilmeActivity">
+
+        <ImageView android:id="@+id/img_filme"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="16:9"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sombras"/>
+
+        <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@android:color/transparent"
+            />
+
+        <ImageView android:id="@+id/img_ic_play"
+            android:layout_width="72dp"
+            android:layout_height="71dp"
+            app:layout_constraintTop_toTopOf="@id/img_filme"
+            app:layout_constraintBottom_toBottomOf="@id/img_filme"
+            app:layout_constraintStart_toStartOf="@id/img_filme"
+            app:layout_constraintEnd_toEndOf="@id/img_filme"
+            android:src="@drawable/ic_play" />
+
+        <TextView android:id="@+id/txt_titulo_filme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/img_filme"
+            app:layout_constraintStart_toStartOf="@id/img_filme"
+            android:layout_marginBottom="22dp"
+            android:layout_marginStart="16dp"
+            tools:text="olá, mundo"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView android:id="@+id/txt_desc_filme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/img_filme"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="48dp"
+            tools:text="Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo "
+            android:textSize="14sp"
+            android:lineSpacingExtra="3sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@color/gray_light"
+            />
+
+        <TextView android:id="@+id/txt_elenco_filme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_desc_filme"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="48dp"
+            tools:text="Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo Olá, mundo "
+            android:textSize="14sp"
+            android:lineSpacingExtra="3sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView android:id="@+id/txt_opc_sim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_elenco_filme"
+            app:layout_constraintStart_toStartOf="@id/txt_elenco_filme"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/opc_sim"
+            android:textSize="14sp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recy_view_filmes_simil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_opc_sim"
+            android:layout_marginTop="16dp"
+            tools:listitem="@layout/item_similar"
+            />
+
+        <ProgressBar android:id="@+id/prog_bar_filme_detal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/recy_view_filmes_simil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
