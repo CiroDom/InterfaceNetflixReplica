@@ -56,7 +56,6 @@ class TaskFilmeDetal(private val callback: Callback) {
                     callback.noResultado(filmeDetal)
                 }
             }
-
             catch (e: IOException){
                 val mensagem = e.message ?: "erro desconhecido"
                 Log.e("Teste", mensagem, e)
