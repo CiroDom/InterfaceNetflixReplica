@@ -3,19 +3,19 @@ package com.cdom.netflixremaketa.filme_actv.recy_view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.cdom.netflixremaketa.databinding.ItemFilmeBinding
 import com.cdom.netflixremaketa.databinding.ItemSimilarBinding
 import com.cdom.netflixremaketa.model.Filme
+import com.squareup.picasso.Picasso
 
 class AdapterSimil(
-    private val listaFilmes: List<Filme>
+    private val listaFilmes: List<Filme>,
 ): RecyclerView.Adapter<AdapterSimil.VHolder>() {
 
     inner class VHolder(val binding: ItemSimilarBinding): RecyclerView.ViewHolder(binding.root){
-        fun especificar(filmeEspecifico: Filme){
-            val imgCapa = binding.imgCapa
-            // TODO: aqui vai ser trocado por uma URL
+        fun especificar(filmeSugest: Filme){
+            val capaSugest = binding.imgCapa
 
+            Picasso.get().load(filmeSugest.urlCapa).into(capaSugest)
         }
     }
 

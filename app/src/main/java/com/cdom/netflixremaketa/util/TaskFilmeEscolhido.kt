@@ -3,9 +3,8 @@ package com.cdom.netflixremaketa.util
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.cdom.netflixremaketa.model.Categoria
 import com.cdom.netflixremaketa.model.Filme
-import com.cdom.netflixremaketa.model.FilmeDetal
+import com.cdom.netflixremaketa.model.FilmeEscolhido
 import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
@@ -13,7 +12,7 @@ import java.net.URL
 import java.util.concurrent.Executors
 import javax.net.ssl.HttpsURLConnection
 
-class TaskFilmeDetal(private val callback: Callback) {
+class TaskFilmeEscolhido(private val callback: Callback) {
 
     // Algumas coisas feitas na Tread paralela devem ser
     // enviadas para a UI Tread, o handler serve para isso
@@ -21,7 +20,7 @@ class TaskFilmeDetal(private val callback: Callback) {
 
     interface Callback{
         fun naPreExecucao()
-        fun noResultado(filmeDetal: FilmeDetal)
+        fun noResultado(filmeEscolhido: FilmeEscolhido)
         fun naFalha(mensagem: String)
     }
 
@@ -39,6 +38,7 @@ class TaskFilmeDetal(private val callback: Callback) {
                 urlConnection.readTimeout = 2000 //tempo de leitura
                 urlConnection.connectTimeout = 2000 //tempo de conexão
                 val statusCode = urlConnection.responseCode
+
                 if (statusCode == 400){
                     stream = urlConnection.errorStream
                     val jsonEmString = stream.bufferedReader().use { it.readText() }
@@ -49,11 +49,12 @@ class TaskFilmeDetal(private val callback: Callback) {
                 else if (statusCode > 400){
                     throw IOException("Erro na comunicação com o servidor")
                 }
+
                 stream = urlConnection.inputStream
                 val jsonEmString = stream.bufferedReader().use {it.readText()}
-                val filmeDetal = transfEmFilmDetal(jsonEmString)
+                val filmeEscolhido = transfEmFilmeEscolhido(jsonEmString)
                 handler.post{
-                    callback.noResultado(filmeDetal)
+                    callback.noResultado(filmeEscolhido)
                 }
             }
             catch (e: IOException){
@@ -70,7 +71,7 @@ class TaskFilmeDetal(private val callback: Callback) {
         }
     }
 
-    private fun transfEmFilmDetal(jsonEmString: String): FilmeDetal{
+    private fun transfEmFilmeEscolhido(jsonEmString: String): FilmeEscolhido {
         val jsonRaiz = JSONObject(jsonEmString) //acessar o objeto json
 
         val id = jsonRaiz.getInt("id")
@@ -82,15 +83,15 @@ class TaskFilmeDetal(private val callback: Callback) {
 
         val similares = mutableListOf<Filme>()
         for (i in 0 until filmesEmJson.length()){
-            val filmeEmJson = filmesEmJson.getJSONObject(i)
+            val filmeSimilEmJson = filmesEmJson.getJSONObject(i)
 
-            val similarId = filmeEmJson.getInt("id")
-            val similarCapaUrl = filmeEmJson.getString("cover_url")
+            val similarId = filmeSimilEmJson.getInt("id")
+            val similarCapaUrl = filmeSimilEmJson.getString("cover_url")
 
             similares.add(Filme(similarId, similarCapaUrl))
         }
-        val filme = Filme(id, capaUrl, titulo, desc, elenco)
+        val filmeEscolhido = Filme(id, capaUrl, titulo, desc, elenco)
 
-        return FilmeDetal(filme, similares)
+        return FilmeEscolhido(filmeEscolhido, similares)
     }
 }

@@ -6,8 +6,7 @@
     tools:showIn="@layout/item_categoria"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/img_capa"
+    <ImageView android:id="@+id/img_capa"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

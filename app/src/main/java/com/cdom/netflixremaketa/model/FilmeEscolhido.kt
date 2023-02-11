@@ -1,6 +1,6 @@
 package com.cdom.netflixremaketa.model
 
-data class FilmeDetal(
+data class FilmeEscolhido(
     val filme: Filme,
     val similares: List<Filme>
 )

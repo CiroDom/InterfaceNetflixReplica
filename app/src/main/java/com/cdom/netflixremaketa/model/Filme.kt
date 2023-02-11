@@ -6,5 +6,4 @@ data class Filme(
     val titulo: String = "",
     val desc: String = "",
     val elenco: String = "",
-) {
-}
+)
