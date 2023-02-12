@@ -72,6 +72,8 @@ class FilmeActivity : AppCompatActivity(), TaskFilmeEscolhido.Callback {
 
     override fun naPreExecucao() {
         progBar.visibility = View.VISIBLE
+
+        carregarListaReserva()
     }
 
     override fun noResultado(filmeEscolhido: FilmeEscolhido) {
@@ -102,6 +104,33 @@ class FilmeActivity : AppCompatActivity(), TaskFilmeEscolhido.Callback {
     override fun naFalha(mensagem: String) {
         progBar.visibility = View.GONE
 
+        carregarListaReserva()
+
         Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show()
     }
+
+    private fun carregarListaReserva(){
+        if(filmes.isNotEmpty()){
+
+            filmes.clear() // precaução/boa prática
+
+            for(i in 0 until 15){
+                //id e url que eu sei previamente que não existem,
+                // pois o Picasso não aceita um Path/Url vazio
+                val filmeReserva = Filme(10, "https://api.tiagoaguiar.co/netflixapp/movie/$5?apiKey=7d3692ac-213c-4959-8ec2-b2e1fba49efb")
+                filmes.add(filmeReserva)
+            }
+
+            adapter.notifyDataSetChanged()
+        }
+        else {
+            for(i in 0 until 15){
+                //id e url que eu sei previamente que não existem,
+                // pois o Picasso não aceita um Path/Url vazio
+                val filmeReserva = Filme(10, "https://api.tiagoaguiar.co/netflixapp/movie/$5?apiKey=7d3692ac-213c-4959-8ec2-b2e1fba49efb")
+                filmes.add(filmeReserva)
+            }
+        }
+    }
+
 }
