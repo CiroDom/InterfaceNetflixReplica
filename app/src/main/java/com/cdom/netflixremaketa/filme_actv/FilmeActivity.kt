@@ -104,7 +104,7 @@ class FilmeActivity : AppCompatActivity(), TaskFilmeEscolhido.Callback {
     override fun naFalha(mensagem: String) {
         progBar.visibility = View.GONE
 
-        carregarListaReserva()
+//        carregarListaReserva()
 
         Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show()
     }

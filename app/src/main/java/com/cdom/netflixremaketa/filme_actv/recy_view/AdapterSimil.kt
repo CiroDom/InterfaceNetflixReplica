@@ -3,6 +3,7 @@ package com.cdom.netflixremaketa.filme_actv.recy_view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cdom.netflixremaketa.R
 import com.cdom.netflixremaketa.databinding.ItemSimilarBinding
 import com.cdom.netflixremaketa.model.Filme
 import com.squareup.picasso.Picasso
@@ -15,7 +16,11 @@ class AdapterSimil(
         fun especificar(filmeSugest: Filme){
             val capaSugest = binding.imgCapa
 
-            Picasso.get().load(filmeSugest.urlCapa).into(capaSugest)
+            Picasso
+                .get()
+                .load(filmeSugest.urlCapa)
+                .placeholder(R.drawable.placeholder_bg) // <=== AQUI VAI CARREGAR NOVAMENTE O placeholder
+                .into(capaSugest)
         }
     }
 

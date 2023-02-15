@@ -3,6 +3,7 @@ package com.cdom.netflixremaketa.main_actv.recy_view_hori
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cdom.netflixremaketa.R
 import com.cdom.netflixremaketa.databinding.ItemFilmeBinding
 import com.cdom.netflixremaketa.model.Filme
 import com.squareup.picasso.Picasso
@@ -22,6 +23,7 @@ class AdapterFilmes(
             Picasso
                 .get()
                 .load(filmeEspecifico.urlCapa)
+                .placeholder(R.drawable.placeholder_bg) // <=== AQUI VAI CARREGAR NOVAMENTE O placeholder
                 .into(imgCapa)
         }
     }
